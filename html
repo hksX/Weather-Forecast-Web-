@@ -1,0 +1,25 @@
+          const data = await response.json();
+          const cardHtml = createWeatherCard(data);
+          mainSection.innerHTML = cardHtml;
+          cityInput.value = '';
+          cityInput.focus();
+        } catch (err) {
+          mainSection.innerHTML = '';
+          errorMsg.textContent = err.message;
+          errorMsg.classList.remove('hidden');
+          cityInput.focus();
+        }
+      }
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const city = cityInput.value.trim();
+        if (city.length > 0) {
+          fetchWeather(city);
+        }
+      });
+      // Optionally, fetch weather for a default city on load
+      // fetchWeather('New York');
+    })();
+  </script>
+</body>
+</html>
